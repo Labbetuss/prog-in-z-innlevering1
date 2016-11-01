@@ -1,14 +1,26 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 //Kjekt å prototype funksjoner
 int returnNumberLines ( FILE *handledFiles );
+
+char maxNameBuffer[40];
+int maxNameLength = 40;
 
 int main(int argc, char *argv[]) {
 
     //TODO - Endre dette slikt at den tar argument fra terminal når man kjører programmet
     char fileName[] = "/home/labbetuss/Desktop/prog-in-z-innlevering1/files/all.txt";
-    char buffer[255];
+
     FILE *file = fopen(fileName, "r");
+
+    int numberOfNames = returnNumberLines(file);
+
+    char **mDarray;
+    mDarray = malloc(numberOfNames * sizeof(char *));
+
+
 
     //Sjekke at fopen greide å åpne filen
     if(file == NULL) {
@@ -20,13 +32,16 @@ int main(int argc, char *argv[]) {
     // En seksjon med litt testing for moro skyld
     {
 
-        int test = 0;
+        for (int count = 0; count <= numberOfNames; ++count) {
+            mDarray[count] = malloc(maxNameLength * sizeof(char *));
+            fgets(mDarray[count], maxNameLength, file);
+        }
 
-        //La oss prøve å printe shit ut
-        while (fgets(buffer, sizeof(buffer), file)) {
+        /*
+        while (fgets(mDarray, sizeof(buffer), file)) {
             printf("%d Lines has been read: The name is: %s", test, buffer);
             test++;
-        }
+        } */
     }
 
 
