@@ -55,10 +55,10 @@ int returnNumberLines ( FILE *handledFiles ) {
 
     char buffer[255];
     int lines = 0;
-    rewind(handledFiles);
+
     while (fgets(buffer, sizeof(buffer), handledFiles)) {
         lines++;
     }
-
+    rewind(handledFiles);
     return lines;
 }
