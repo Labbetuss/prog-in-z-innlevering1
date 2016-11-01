@@ -16,13 +16,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int *testPointer;
 
     // En seksjon med litt testing for moro skyld
     {
 
         int test = 0;
-        testPointer = &test;
 
         //La oss prøve å printe shit ut
         while (fgets(buffer, sizeof(buffer), file)) {
@@ -30,13 +28,6 @@ int main(int argc, char *argv[]) {
             test++;
         }
     }
-
-    printf("\nLa oss se hva verdien er nå %d \n\n\n", *testPointer);
-
-    char testeSize[] = "Hvor stor er denne? Hva med nå da?12";
-    int testSize = sizeof(testeSize);
-
-    printf("%d \n\n\n\n", testSize);
 
 
     printf("%d", returnNumberLines(file));
