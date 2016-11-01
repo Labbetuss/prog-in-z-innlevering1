@@ -30,19 +30,18 @@ int main(int argc, char *argv[]) {
 
 
     // En seksjon med litt testing for moro skyld
-    {
 
-        for (int count = 0; count <= numberOfNames; ++count) {
-            mDarray[count] = malloc(maxNameLength * sizeof(char *));
-            fgets(mDarray[count], maxNameLength, file);
-        }
 
-        /*
-        while (fgets(mDarray, sizeof(buffer), file)) {
-            printf("%d Lines has been read: The name is: %s", test, buffer);
-            test++;
-        } */
+    for (int count = 0; count <= numberOfNames; ++count) {
+        mDarray[count] = malloc(maxNameLength * sizeof(char *));
+        fgets(mDarray[count], maxNameLength, file);
     }
+
+    /*
+    while (fgets(mDarray, sizeof(buffer), file)) {
+        printf("%d Lines has been read: The name is: %s", test, buffer);
+        test++;
+    } */
 
 
     printf("%d", returnNumberLines(file));
@@ -50,7 +49,7 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-//
+//This genius part has no comments
 int returnNumberLines ( FILE *handledFiles ) {
 
     char buffer[255];
