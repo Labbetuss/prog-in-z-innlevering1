@@ -3,9 +3,9 @@
 #include <string.h>
 
 //Kjekt å prototype funksjoner
-int returnNumberLines ( FILE *handledFiles );
+int returnNumberLines (FILE *handledFiles);
+void sortNames(char** ppchNames, int iCount);
 
-char maxNameBuffer[40];
 int maxNameLength = 40;
 
 int main(int argc, char *argv[]) {
@@ -32,25 +32,27 @@ int main(int argc, char *argv[]) {
     // En seksjon med litt testing for moro skyld
 
 
-    for (int count = 0; count <= numberOfNames; ++count) {
+    for (int count = 0; count < numberOfNames; ++count) {
         mDarray[count] = malloc(maxNameLength * sizeof(char *));
         fgets(mDarray[count], maxNameLength, file);
     }
 
-    /*
-    while (fgets(mDarray, sizeof(buffer), file)) {
-        printf("%d Lines has been read: The name is: %s", test, buffer);
-        test++;
-    } */
 
+    for (int count = 0; count < numberOfNames; count++) {
+        printf("%d Lines has been read: The name is: %s", count, mDarray[count]);
+    }
 
-    printf("%d", returnNumberLines(file));
+    sortNames(mDarray, numberOfNames);
+
+    for (int count = 0; count < numberOfNames; count++) {
+        printf("%d Lines has been read: The name is: %s", count, mDarray[count]);
+    }
 
     return 0;
 }
 
 //This genius part has no comments
-int returnNumberLines ( FILE *handledFiles ) {
+int returnNumberLines(FILE *handledFiles) {
 
     char buffer[255];
     int lines = 0;
@@ -60,4 +62,19 @@ int returnNumberLines ( FILE *handledFiles ) {
     }
     rewind(handledFiles);
     return lines;
+}
+
+//Let's hope this shit works
+void sortNames(char** ppchNames, int iCount)
+{
+    int i,j;
+    for (j = 0; j < iCount -1; j++) {
+        for (i = 0; i < iCount -1; i++) {
+            if (0 < strcmp(ppchNames[i], ppchNames[i +1])) {
+                char* pchTemp = ppchNames[i];
+                ppchNames[i] = ppchNames[i +1];
+                ppchNames[i +1] = pchTemp;
+            }
+        }
+    }
 }
